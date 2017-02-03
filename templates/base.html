@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free Speech Corner</title>
+    <link rel="stylesheet" type="text/css" href="static/main.css">
+</head>
+<body>
+    <header>
+        <a href="/">
+            <h1>Free Speech Corner</h1>
+        </a>
+    </header>
+    <nav>
+        <a class="nav-link" href="/">home</a>
+        {% if user %}
+            {{user.name}} (<a class="nav-link" href="/logout">log out</a>)
+        {% else %}
+            <a class="nav-link" href="/login">log in</a>
+            <a class="nav-link" href="/signup">sign up</a>
+        {% endif %}
+    </nav>
+    <section>
+    {% block content %}
+    {% endblock %}
+    </section>
+</body>
+</html>
