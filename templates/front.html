@@ -4,8 +4,28 @@
 
 {% for post in posts %}
     <article class="post">
-        <div class="post-subject">{{post.subject}}</div>
+        <div class="post-title">{{post.subject}}</div>
         <div class="post-content">{{post.content}}</div>
+        <div class="post-likes">{{post.likes}} likes</div>
+        {% if post.user.name == user.name %}
+            <form method="post" name="modify"></form>
+            <input type="hidden" name="post_id" value="{{post.id}}">
+            <button class="comment-button" type="submit">modify</button>
+        {% else %}
+            <form method="post" name="like">
+                <input type="hidden" value="{{post.id}}" name="post_id">
+                <input class="like-button" type="submit">
+            </form>
+            <form method="post" name="unlike">
+                <input type="hidden" value="{{post.id}}" name="post_id">
+                <input class="like-button" type="submit">unlike</button>
+            </form>
+        {% endif %}
+        <form method="post" action="/{{post.id}}" name="get_post">
+            <button type="submit" class="comment-button">comment</button>
+        </form>
+
+
     </article>
 {% endfor %}
 

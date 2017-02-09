@@ -8,20 +8,21 @@
 </head>
 <body>
     <header>
-        <a href="/">
+        <a class="header-link" href="/">
             <h1>Free Speech Corner</h1>
         </a>
     </header>
     <nav>
         <a class="nav-link" href="/">home</a>
-        <a class="nav-link" href="/newpost">write</a>
         {% if user %}
+            <a class="nav-link" href="/newpost">write</a>
             {{user.name}} (<a class="nav-link" href="/logout">log out</a>)
         {% else %}
             <a class="nav-link" href="/login">log in</a>
             <a class="nav-link" href="/signup">sign up</a>
         {% endif %}
     </nav>
+    <hr>
     <section>
     {% block content %}
     {% endblock %}

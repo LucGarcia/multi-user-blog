@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<article>
+    <div class="post-heading">
+        <h2 class="post-title">{{post.subject}}</h2>
+        <h4 class="post-author">by {{post.user.name}}</h4>
+    </div>
+    <div class="post-content">
+        {{post.content}}
+    </div>
+    <div class="post-likes">{{post.likes}} likes</div>
+
+    {% if post.user.name != user.name %}
+        <form method="post">
+            <label>
+                <button class="like-button" type="submit" name="like" value={{post.id}}>like</button>
+                <button class="like-button" type="submit" name="unlike" value={{post.id}}>unlike</button>
+            </label>
+        </form>
+    {% else %}
+        <form method="post">
+            <label>
+                <button action >edit</button>
+            </label>
+        </form>
+    {% endif %}
+    <form method="post">
+        <label>
+            <div>Write a comment!</div>
+            <textarea class="comment-textarea" name="comment"></textarea>
+            <input type="submit">
+        </label>
+    </form>
+    {% for c in post.comment_set %}
+        <div class="comments-content">{{c.content}}</div>
+        <div>{{c.user.name}}</div>
+    {% endfor %}
+</article>
+
+{% endblock %}
+
+
